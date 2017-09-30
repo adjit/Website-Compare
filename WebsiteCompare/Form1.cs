@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using HtmlAgilityPack;
 
 namespace WebsiteCompare
 {
@@ -20,16 +19,9 @@ namespace WebsiteCompare
 
         private void runTest_Click(object sender, EventArgs e)
         {
-            var html = @"https://www.metsales.com/MetropolitanSales/items/Products.aspx?store=&currpage=1&searchby=&lookfor=t88v&searchMethod=Contains";
-            HtmlWeb web = new HtmlWeb();
-            var htmlDoc = web.Load(html);
-            var nodes = htmlDoc.DocumentNode.SelectNodes("//a[contains(@class, 'ItemNumberLink')]");
+            websiteCompare wc = new websiteCompare();
 
-            foreach(var item in nodes)
-            {
-                outputBox.Text += item.InnerHtml + "\r\n";
-
-            }
+            int numErrors = wc.runWebsiteCompare();
         }
     }
 }
